@@ -66,7 +66,7 @@ public class BritSpeak extends JavaPlugin implements Listener {
             return word;
         }
         try {
-            Document doc = Jsoup.connect("http://www.translatebritish.com/search.php?st=" + word + "&submit=GO").get();
+            Document doc = Jsoup.connect("http://www.translatebritish.com/search.php?st=" + word.replaceAll("\\p{Punct}", "") + "&submit=GO").get();
             Element el = doc.getElementsByTag("table").get(2).getElementsByTag("tbody").get(0).getElementsByTag("tr").get(0).getElementsByTag("td").get(0);
             List<String> superPowers = new ArrayList<String>();
             for (Element en : el.getElementsByTag("b")) {
